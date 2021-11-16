@@ -10,6 +10,10 @@ const UserSchema = new Schema({
     username: String,
     emailAddress: String,
     displayName: String,
+    isowner: {
+        type: Boolean,
+        default: true
+    },
     created: {
         type: Date,
         default: Date.now()
