@@ -1,0 +1,42 @@
+
+
+<div class="container mt-1 text-white">
+<h1>Business Contacts list</h1>
+<div class="row">
+    <div class="col">
+     <!--table-->  
+
+     <table class="table backColor">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col">Email Address</th>
+             <% if(displayName) { %>
+            <th></th>
+            <th></th>
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+
+        <% for(let count=0; count<contacting.length; count++) { %>
+          <tr>
+            <th scope="row bg1"><%= count+1 %></th>
+            <td><%= contacting[count].name %></td>
+            <td><%= contacting[count].number %></td>
+            <td><%= contacting[count].emailAddress %></td>  
+            <% if(displayName) { %>      
+            <td class="text-center"><a href="/contacting-list/update/<%= contacting[count]._id %>" class="btn btn-outline-primary btn-sm edit text-white"><i class="fas fa-edit fa-sm"></i> Update</a></td>
+                <td class="text-center"><a href="/contacting-list/delete/<%= contacting[count]._id %>" class="btn btn-outline-danger btn-sm delete text-white"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
+                 <% } %>
+          </tr>
+                 
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+</div>
+</div>
