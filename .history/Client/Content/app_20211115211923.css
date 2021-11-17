@@ -168,20 +168,3 @@ from, to { border-color: transparent }
   color: white;
   text-align: center;
 }
-
-h4 {text-align: center;}
-
-.grid-container {
-  display: grid;
-  grid-template: 150px / auto auto auto;
-  grid-gap: 10px;
-  background-color: #c0b3b3;
-  padding: 10px;
-}
-
-.grid-container > div {
-  background-color: rgb(255, 255, 255);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 20px;
-}

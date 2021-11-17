@@ -42,8 +42,6 @@ function onError(error) {
             break;
         default:
             throw error;
-
-            
     }
 }
 function onListening() {
