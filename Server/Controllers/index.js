@@ -65,7 +65,8 @@ function ProcessRegisterPage(req, res, next) {
     let newUser = new user_1.default({
         username: req.body.username,
         emailAddress: req.body.emailAddress,
-        displayName: req.body.FirstName + " " + req.body.LastName
+        displayName: req.body.FirstName + " " + req.body.LastName,
+        isowner: req.body.isowner
     });
     user_1.default.register(newUser, req.body.password, (err) => {
         if (err) {
@@ -84,7 +85,7 @@ function ProcessRegisterPage(req, res, next) {
 exports.ProcessRegisterPage = ProcessRegisterPage;
 function ProcessLogoutPage(req, res, next) {
     req.logout();
-    res.redirect('/index');
+    res.redirect('/home');
 }
 exports.ProcessLogoutPage = ProcessLogoutPage;
 //# sourceMappingURL=index.js.map

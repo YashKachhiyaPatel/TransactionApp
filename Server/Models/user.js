@@ -11,8 +11,8 @@ const UserSchema = new Schema({
     emailAddress: String,
     displayName: String,
     isowner: {
-        type: Boolean,
-        default: true
+        type: String,
+        default: "owner"
     },
     created: {
         type: Date,

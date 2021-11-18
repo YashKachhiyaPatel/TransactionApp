@@ -8,8 +8,8 @@ const UserSchema = new Schema
     emailAddress: String,
     displayName: String,
     isowner: {
-        type: Boolean,
-        default: true
+        type: String,
+        default: "owner"
     },
     created: 
     {
@@ -37,7 +37,8 @@ declare global
         _id: String,
         username: String,
         emailAddress: String,
-        displayName: String
+        displayName: String,
+        isowner: String
     }
 }
 

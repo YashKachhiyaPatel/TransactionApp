@@ -96,7 +96,8 @@ export function ProcessRegisterPage(req: Request, res: Response, next: NextFunct
    ({
         username: req.body.username,
         emailAddress: req.body.emailAddress,
-        displayName: req.body.FirstName + " " + req.body.LastName
+        displayName: req.body.FirstName + " " + req.body.LastName,
+        isowner: req.body.isowner
    });
 
    User.register(newUser, req.body.password, (err) =>
@@ -125,6 +126,6 @@ export function ProcessLogoutPage(req: Request, res: Response, next: NextFunctio
 {
    req.logout();
 
-   res.redirect('/index');
+   res.redirect('/home');
 }
 
