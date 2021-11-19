@@ -14,6 +14,6 @@ router.get('/addcustomer/edit/:id', index_1.AuthGuard, addcustomer_1.Displayaddc
 router.post('/addcustomer/add', index_1.AuthGuard, addcustomer_1.ProcessCustomerAddPage);
 router.post('/addcustomer/edit/:id', index_1.AuthGuard, addcustomer_1.ProcessCustomerEditPage);
 router.get('/addcustomer/delete/:id', index_1.AuthGuard, addcustomer_1.ProcessCustomerDeletePage);
+router.get('/transactionhistory', index_1.AuthGuard, addcustomer_1.DisplayTransactionHistoryPage);
 router.get('/addcustomer', index_1.AuthGuard, addcustomer_1.DisplayaddcustomerListPage);
-router.get('/transactionhistory', index_1.AuthGuard, addcustomer_1.DisplaytransactionhistoryPage);
 //# sourceMappingURL=addcustomer.js.map
