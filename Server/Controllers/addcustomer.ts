@@ -112,6 +112,16 @@ export function ProcessCustomerDeletePage(req: Request, res: Response, next: Nex
   });
 }
 
+export function DisplayTransactionHistoryPage(req: Request, res: Response, next: NextFunction): void 
+{
+  addcustomer.find({}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
+      if (err) {
+          return console.error(err);
+      }
+      res.render('owner/transactionhistory', { title: 'Transaction History', page: 'transactionhistory', addcustomer: addcustomerCollection, displayName: UserDisplayName(req) });
+  });
+}
+
 //dashboard to customer list
 export function ProcessAddCustomer(req: Request, res: Response, next: NextFunction): void
  {

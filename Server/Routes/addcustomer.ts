@@ -3,7 +3,7 @@ const router = express.Router();
 export default router;
 
 // instantiate an object of type clothing controller
-import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage } from '../Controllers/addcustomer';
+import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage, DisplayTransactionHistoryPage } from '../Controllers/addcustomer';
 
 // import Util Functions
 import { AuthGuard } from '../Util/index';
@@ -26,8 +26,9 @@ router.post('/addcustomer/edit/:id', AuthGuard, ProcessCustomerEditPage);
 /* GET - process /clothing-list/delete/:id */
 router.get('/addcustomer/delete/:id', AuthGuard, ProcessCustomerDeletePage);
 
+// GET - the owner's transaction history page
+router.get('/transactionhistory', AuthGuard, DisplayTransactionHistoryPage);
+
 //dashboard to list page
 router.get('/addcustomer', AuthGuard, DisplayaddcustomerListPage);
-
-
 
