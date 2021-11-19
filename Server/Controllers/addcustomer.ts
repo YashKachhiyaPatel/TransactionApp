@@ -21,7 +21,7 @@ export function DisplayaddcustomerEditPage(req: Request, res: Response, next: Ne
 
     // pass the id to the db
 
-    // db.clothing.find({"_id": id})
+    // db.customer.find({"_id": id})
 
     addcustomer.findById(id, {}, {}, (err, addcustomerItemToEdit) => 
     {
@@ -41,7 +41,7 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
 {
     let id = req.params.id;
 
-    // instantiate a new Clothing Item
+    // instantiate a new customer Item
     let updatedaddcustomerItem = new addcustomer
     ({
       "_id": id,
@@ -51,7 +51,7 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
       "custamount": req.body.custamount
     });
   
-    // find the clothing item via db.clothing.update({"_id":id}) and then update
+    // find the customer item via db.customer.update({"_id":id}) and then update
     addcustomer.updateOne({_id: id}, updatedaddcustomerItem, {}, (err) =>{
       if(err)
       {
@@ -74,7 +74,7 @@ export function DisplayCustomerAddPage(req: Request, res: Response, next: NextFu
 // Process (C)reate page
 export function ProcessCustomerAddPage(req: Request, res: Response, next: NextFunction): void
 {
-  // instantiate a new Clothing
+  // instantiate a new customer
   let newCustomer = new addcustomer
   ({
     "custname": req.body.custname,
@@ -83,7 +83,7 @@ export function ProcessCustomerAddPage(req: Request, res: Response, next: NextFu
       "custamount": req.body.custamount
   });
 
-  // db.clothing.insert({clothing data is here...})
+  // db.customer.insert({customer data is here...})
   addcustomer.create(newCustomer, (err) => {
     if(err)
     {
@@ -100,7 +100,7 @@ export function ProcessCustomerDeletePage(req: Request, res: Response, next: Nex
 {
     let id = req.params.id;
 
-  // db.clothing.remove({"_id: id"})
+  // db.customer.remove({"_id: id"})
   addcustomer.remove({_id: id}, (err) => {
     if(err)
     {

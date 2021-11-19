@@ -8,27 +8,27 @@ import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage,
 // import Util Functions
 import { AuthGuard } from '../Util/index';
 
-/* GET /clothing-list page. */
+/* GET /customer-list page. */
 router.get('/', ProcessAddCustomer);
 
-/* GET - display /clothing-list/add page. */
+/* GET - display /customer/add page. */
 router.get('/addcustomer/add', AuthGuard, DisplayCustomerAddPage);
 
-/* GET - display /clothing-list/edit/:id page. */
+/* GET - display /customer/edit/:id page. */
 router.get('/addcustomer/edit/:id', AuthGuard, DisplayaddcustomerEditPage);
 
-/* POST - process /clothing-list/add page */
+/* POST - process /customer/add page */
 router.post('/addcustomer/add', AuthGuard, ProcessCustomerAddPage);
 
-/* POST - process /clothing-list/edit/:id page */
+/* POST - process /customer/edit/:id page */
 router.post('/addcustomer/edit/:id', AuthGuard, ProcessCustomerEditPage);
 
-/* GET - process /clothing-list/delete/:id */
+/* GET - process /customer/delete/:id */
 router.get('/addcustomer/delete/:id', AuthGuard, ProcessCustomerDeletePage);
 
 // GET - the owner's transaction history page
 router.get('/transactionhistory', AuthGuard, DisplayTransactionHistoryPage);
 
-//dashboard to list page
+//dashboard to customer-list page
 router.get('/addcustomer', AuthGuard, DisplayaddcustomerListPage);
 

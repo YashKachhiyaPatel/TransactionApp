@@ -11,7 +11,7 @@ function DisplayaddcustomerListPage(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        res.render('owner/addcustomer', { title: 'Add Contact', page: 'addcustomer', addcustomer: addcustomerCollection, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('owner/addcustomer', { title: 'Add Contact', page: 'addcustomer', addcustomer: addcustomerCollection, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayaddcustomerListPage = DisplayaddcustomerListPage;
@@ -22,7 +22,7 @@ function DisplayaddcustomerEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('owner/update', { title: 'Update', page: 'update', addcustomer: addcustomerItemToEdit, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('owner/update', { title: 'Update', page: 'update', addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayaddcustomerEditPage = DisplayaddcustomerEditPage;
@@ -45,7 +45,7 @@ function ProcessCustomerEditPage(req, res, next) {
 }
 exports.ProcessCustomerEditPage = ProcessCustomerEditPage;
 function DisplayCustomerAddPage(req, res, next) {
-    res.render('owner/update', { title: 'Add', page: 'update', addcustomer: '', displayName: (0, Util_1.UserDisplayName)(req) });
+    res.render('owner/update', { title: 'Add', page: 'update', addcustomer: '', displayName: Util_1.UserDisplayName(req) });
 }
 exports.DisplayCustomerAddPage = DisplayCustomerAddPage;
 function ProcessCustomerAddPage(req, res, next) {
@@ -80,12 +80,12 @@ function DisplayTransactionHistoryPage(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        res.render('owner/transactionhistory', { title: 'Transaction History', page: 'transactionhistory', addcustomer: addcustomerCollection, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('owner/transactionhistory', { title: 'Transaction History', page: 'transactionhistory', addcustomer: addcustomerCollection, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayTransactionHistoryPage = DisplayTransactionHistoryPage;
 function ProcessAddCustomer(req, res, next) {
-    res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: (0, Util_1.UserDisplayName)(req) });
+    res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: Util_1.UserDisplayName(req) });
 }
 exports.ProcessAddCustomer = ProcessAddCustomer;
 //# sourceMappingURL=addcustomer.js.map
