@@ -37,7 +37,8 @@ const user_1 = __importDefault(require("../Models/user"));
 const connect_flash_1 = __importDefault(require("connect-flash"));
 const index_1 = __importDefault(require("../Routes/index"));
 const addcustomer_1 = __importDefault(require("../Routes/addcustomer"));
-const app = express_1.default();
+const addbusiness_1 = __importDefault(require("../Routes/addbusiness"));
+const app = (0, express_1.default)();
 exports.default = app;
 const DBConfig = __importStar(require("./db"));
 mongoose_1.default.connect(DBConfig.LocalURI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -50,19 +51,19 @@ db.once("open", function () {
 });
 app.set('views', path_1.default.join(__dirname, '../Views'));
 app.set('view engine', 'ejs');
-app.use(morgan_1.default('dev'));
+app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use(cookie_parser_1.default());
+app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.static(path_1.default.join(__dirname, '../../Client')));
 app.use(express_1.default.static(path_1.default.join(__dirname, '../../node_modules')));
-app.use(cors_1.default());
-app.use(express_session_1.default({
+app.use((0, cors_1.default)());
+app.use((0, express_session_1.default)({
     secret: DBConfig.Secret,
     saveUninitialized: false,
     resave: false
 }));
-app.use(connect_flash_1.default());
+app.use((0, connect_flash_1.default)());
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 passport_1.default.use(user_1.default.createStrategy());
@@ -70,8 +71,9 @@ passport_1.default.serializeUser(user_1.default.serializeUser());
 passport_1.default.deserializeUser(user_1.default.deserializeUser());
 app.use('/', index_1.default);
 app.use('/owner', addcustomer_1.default);
+app.use('/customer', addbusiness_1.default);
 app.use(function (req, res, next) {
-    next(http_errors_1.default(404));
+    next((0, http_errors_1.default)(404));
 });
 app.use(function (err, req, res, next) {
     res.locals.message = err.message;

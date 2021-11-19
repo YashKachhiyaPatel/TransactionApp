@@ -4,7 +4,7 @@ import passport from 'passport';
 // create an instance of the User Model
 import User from '../Models/user';
 // import Util Functions
-import { UserDisplayName } from '../Util';
+import { UserDisplayName, UserIsOwner } from '../Util';
 
 // Display Functions
 
@@ -44,7 +44,10 @@ export function DisplayLoginPage(req: Request, res: Response, next: NextFunction
         return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req) });
     }
     
-    return res.redirect('/owner');
+    if(UserIsOwner)
+        return res.redirect('/owner');
+
+    return res.redirect('/customer');
 }
 
 export function ProcessLoginPage(req: Request, res: Response, next: NextFunction): void
@@ -73,8 +76,10 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
             console.error(err);
             return next(err);
         }
-
-        return res.redirect('/owner');
+        if(UserIsOwner)        
+            return res.redirect('/owner');
+        else
+            return res.redirect('/customer');
     });
    })(req, res, next);
 }

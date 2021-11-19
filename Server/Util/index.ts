@@ -12,6 +12,17 @@ export function UserDisplayName(req: Request): string
     return '';
 }
 
+export function UserIsOwner(req: Request): boolean
+{
+    if(req.user)
+    {
+        let user = req.user as UserDocument;
+        if(user.isowner.toString().toLowerCase() == "owner")
+            return true;
+    }
+    return false;
+}
+
 export function AuthGuard(req: Request, res: Response, next: NextFunction): void
 {
     if(!req.isAuthenticated())
