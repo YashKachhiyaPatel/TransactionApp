@@ -1,32 +1,33 @@
 import express from 'express';
-import { DisplayAddBusinessPage, DisplayCustomerIndexPage, DisplayEditBusinessPage, DisplayListOfBusinesses, DisplayRateBusinessPage, ProcessAddBusiness, ProcessEditBusinessPage } from '../Controllers/addbusiness';
-import { AuthGuard } from '../Util';
 const router = express.Router();
 export default router;
 
-// CUSTOMER DASHBOARD ====================
-// GET customer dashboard 
-router.get('/', AuthGuard,DisplayCustomerIndexPage);
-router.get('/index', AuthGuard, DisplayCustomerIndexPage);
+// instantiate an object of type clothing controller
+import { DisplayaddbusinessEditPage, DisplayaddBusinessListPage, DisplayBusinessAddPage, ProcessBusinessAddPage, ProcessBusinessDeletePage, ProcessBusinessEditPage } from '../Controllers/addbusiness';
 
-// GET customer's list of business contacts
-router.get('/addbusiness', AuthGuard, DisplayListOfBusinesses);
+// import Util Functions
+import { AuthGuard } from '../Util/index';
 
-// (ADDING) BUSINESS ===================
-// GET customer's add business page
-router.get('/addbusiness/add', AuthGuard, DisplayAddBusinessPage);
+//dashboard to list page
+router.get('/addbusiness', AuthGuard, DisplayaddBusinessListPage);
+/* GET - display add page. */
+router.get('/addbusiness/add', AuthGuard, DisplayBusinessAddPage);
 
-// POST customer's add business page
-router.post('/addbusiness/add', AuthGuard, ProcessAddBusiness);
+/* POST - process add page */
+router.post('/addbusiness/add', AuthGuard, ProcessBusinessAddPage);
 
-// (EDIT) BUSINESS ====================
-// GET customer's edit business page
-router.get('/addbusiness/edit/:id', AuthGuard, DisplayEditBusinessPage);
 
-// POST customer's edit business page
-router.post('/addbusiness/edit/:id', AuthGuard, ProcessEditBusinessPage);
+/* GET - display edit page. */
+router.get('/addbusiness/edit/:id', AuthGuard, DisplayaddbusinessEditPage);
 
-// (RATE) BUSINESS (in progress) ====================
-/* GET customer/ratebusiness page */
-router.get('/ratebusiness', DisplayRateBusinessPage);
+/* POST - process edit page */
+router.post('/addbusiness/edit/:id', AuthGuard, ProcessBusinessEditPage);
+
+/* GET - process delete */
+router.get('/addbusiness/delete/:id', AuthGuard, ProcessBusinessDeletePage);
+
+
+
+
+
 

@@ -3,98 +3,108 @@ import addbusiness from '../Models/addbusiness';
 // import Util Functions
 import { UserDisplayName } from '../Util';
 
-// display the customer's dashboard
-export function DisplayCustomerIndexPage(req: Request, res: Response, next: NextFunction): void
+export function DisplayaddBusinessListPage(req: Request, res:Response,next:NextFunction): void
 {
-    res.render('customer', { title: 'Dashboard', page: 'index', displayName: UserDisplayName(req) });
-}
-
-// display the customer's list of business contacts
-export function DisplayListOfBusinesses(req: Request, res: Response, next: NextFunction): void
-{
-    addbusiness.find({}, null, {sort: {name: 1}}, function(err, addBusinessCollection){
+  addbusiness.find({  }, null, {sort: {name: 1}},function(err,businessCollection){
         if(err){
             return console.error(err);
         }
-        // print the list of businesses
-        res.render('customer/businesslist', { title: "Your List of Businesses", page: "businesslist", addbusiness: addBusinessCollection, displayName: UserDisplayName(req) });
-    })
+        //printing list
+        res.render('owner/addbusiness',{title: 'Add Business', page: 'addbusiness', addbusiness: businessCollection, displayName: UserDisplayName(req) })
+    }); 
 }
 
-// display the customer's add business page - CREATE
-export function DisplayAddBusinessPage(req: Request, res: Response, next: NextFunction): void
+// Display (C)reate page
+export function DisplayBusinessAddPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('customer/addbusiness', { title: "Add Business", page: "addbusiness", addbusiness: '', displayName: UserDisplayName(req) });
+    // show the edit view
+    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', addbusiness: '', displayName: UserDisplayName(req)  });
 }
 
-// process the customer's add business page - POST CREATE
-export function ProcessAddBusiness(req: Request, res: Response, next: NextFunction): void
+
+// Process (C)reate page
+export function ProcessBusinessAddPage(req: Request, res: Response, next: NextFunction): void
 {
-    let newBusiness = new addbusiness
-    ({
-        "bizname": req.body.bizname,
-        "bizaddress": req.body.bizaddress,
-        "bizdescription": req.body.bizdescription
-    });
-  
-    addbusiness.create(newBusiness, (err) => {
-        if(err)
-        {
-          console.error(err);
-          res.end(err);
-        }
-    
-        res.redirect('/customer/addbusiness');
-      });
+  // instantiate a new business
+  let newCustomer = new addbusiness
+  ({
+    "bname": req.body.bname,
+      "baddress": req.body.baddress,
+      "bdescription": req.body.bdescription
+  });
+
+ 
+  addbusiness.create(newCustomer, (err) => {
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    res.redirect('/owner/addbusiness');
+  });
 }
 
-// display the edit business page - EDIT
-export function DisplayEditBusinessPage(req: Request, res: Response, next: NextFunction): void
+// Display (E)dit page
+export function DisplayaddbusinessEditPage(req: Request, res: Response, next: NextFunction): void
 {
     let id = req.params.id;
 
     addbusiness.findById(id, {}, {}, (err, addbusinessItemToEdit) => 
+    {
+        if(err)
         {
-            if(err)
-            {
-                console.error(err);
-                res.end(err);
-            }
+            console.error(err);
+            res.end(err);
+        }
 
-            // show edit view
-            res.render('customer/addbusiness', { title: 'Edit', page: 'addbusiness', addbusiness: addbusinessItemToEdit, displayName: UserDisplayName(req) });
-        });
+        // show the edit view
+        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: UserDisplayName(req) });
+    });
 }
 
-// process the edit business page - PROCESS EDIT
-export function ProcessEditBusinessPage(req: Request, res: Response, next: NextFunction): void
+// Process (E)dit page
+export function ProcessBusinessEditPage(req: Request, res: Response, next: NextFunction): void
 {
     let id = req.params.id;
 
-    // instantiate a new business item
-    let updateAddBusinessItem = new addbusiness
+    // instantiate a new business Item
+    let updatedaddbusinessItem = new addbusiness
     ({
       "_id": id,
-      "bizname": req.body.bizname,
-      "bizaddress": req.body.bizaddress,
-      "bizdescription": req.body.bizdescription
+      "bname": req.body.bname,
+      "baddress": req.body.baddress,
+      "bdescription": req.body.bdescription
     });
   
-    // find the clothing item via db.clothing.update({"_id":id}) and then update
-    addbusiness.updateOne({_id: id}, updateAddBusinessItem, {}, (err) =>{
+    // find the business item 
+    addbusiness.updateOne({_id: id}, updatedaddbusinessItem, {}, (err) =>{
       if(err)
       {
         console.error(err);
         res.end(err);
       }
   
-      res.redirect('/customer/addbusiness');
+      res.redirect('/owner/addbusiness');
     });
 }
 
-// Display page for Customer to Rate a Business
-export function DisplayRateBusinessPage(req: Request, res: Response, next: NextFunction): void
+
+// Process (D)elete page
+export function ProcessBusinessDeletePage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('customer/ratebusiness', { title: 'Rate The Business', page: 'ratebusiness', displayName: UserDisplayName(req) });
+    let id = req.params.id;
+
+  // db.business.remove({"_id: id"})
+  addbusiness.remove({_id: id}, (err) => {
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    res.redirect('/owner/addbusiness');
+  });
 }
+
 

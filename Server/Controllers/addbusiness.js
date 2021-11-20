@@ -3,71 +3,74 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DisplayRateBusinessPage = exports.ProcessEditBusinessPage = exports.DisplayEditBusinessPage = exports.ProcessAddBusiness = exports.DisplayAddBusinessPage = exports.DisplayListOfBusinesses = exports.DisplayCustomerIndexPage = void 0;
+exports.ProcessBusinessDeletePage = exports.ProcessBusinessEditPage = exports.DisplayaddbusinessEditPage = exports.ProcessBusinessAddPage = exports.DisplayBusinessAddPage = exports.DisplayaddBusinessListPage = void 0;
 const addbusiness_1 = __importDefault(require("../Models/addbusiness"));
 const Util_1 = require("../Util");
-function DisplayCustomerIndexPage(req, res, next) {
-    res.render('customer', { title: 'Dashboard', page: 'index', displayName: (0, Util_1.UserDisplayName)(req) });
-}
-exports.DisplayCustomerIndexPage = DisplayCustomerIndexPage;
-function DisplayListOfBusinesses(req, res, next) {
-    addbusiness_1.default.find({}, null, { sort: { name: 1 } }, function (err, addBusinessCollection) {
+function DisplayaddBusinessListPage(req, res, next) {
+    addbusiness_1.default.find({}, null, { sort: { name: 1 } }, function (err, businessCollection) {
         if (err) {
             return console.error(err);
         }
-        res.render('customer/businesslist', { title: "Your List of Businesses", page: "businesslist", addbusiness: addBusinessCollection, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('owner/addbusiness', { title: 'Add Business', page: 'addbusiness', addbusiness: businessCollection, displayName: Util_1.UserDisplayName(req) });
     });
 }
-exports.DisplayListOfBusinesses = DisplayListOfBusinesses;
-function DisplayAddBusinessPage(req, res, next) {
-    res.render('customer/addbusiness', { title: "Add Business", page: "addbusiness", addbusiness: '', displayName: (0, Util_1.UserDisplayName)(req) });
+exports.DisplayaddBusinessListPage = DisplayaddBusinessListPage;
+function DisplayBusinessAddPage(req, res, next) {
+    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', addbusiness: '', displayName: Util_1.UserDisplayName(req) });
 }
-exports.DisplayAddBusinessPage = DisplayAddBusinessPage;
-function ProcessAddBusiness(req, res, next) {
-    let newBusiness = new addbusiness_1.default({
-        "bizname": req.body.bizname,
-        "bizaddress": req.body.bizaddress,
-        "bizdescription": req.body.bizdescription
+exports.DisplayBusinessAddPage = DisplayBusinessAddPage;
+function ProcessBusinessAddPage(req, res, next) {
+    let newCustomer = new addbusiness_1.default({
+        "bname": req.body.bname,
+        "baddress": req.body.baddress,
+        "bdescription": req.body.bdescription
     });
-    addbusiness_1.default.create(newBusiness, (err) => {
+    addbusiness_1.default.create(newCustomer, (err) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.redirect('/customer/addbusiness');
+        res.redirect('/owner/addbusiness');
     });
 }
-exports.ProcessAddBusiness = ProcessAddBusiness;
-function DisplayEditBusinessPage(req, res, next) {
+exports.ProcessBusinessAddPage = ProcessBusinessAddPage;
+function DisplayaddbusinessEditPage(req, res, next) {
     let id = req.params.id;
     addbusiness_1.default.findById(id, {}, {}, (err, addbusinessItemToEdit) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.render('customer/addbusiness', { title: 'Edit', page: 'addbusiness', addbusiness: addbusinessItemToEdit, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: Util_1.UserDisplayName(req) });
     });
 }
-exports.DisplayEditBusinessPage = DisplayEditBusinessPage;
-function ProcessEditBusinessPage(req, res, next) {
+exports.DisplayaddbusinessEditPage = DisplayaddbusinessEditPage;
+function ProcessBusinessEditPage(req, res, next) {
     let id = req.params.id;
-    let updateAddBusinessItem = new addbusiness_1.default({
+    let updatedaddbusinessItem = new addbusiness_1.default({
         "_id": id,
-        "bizname": req.body.bizname,
-        "bizaddress": req.body.bizaddress,
-        "bizdescription": req.body.bizdescription
+        "bname": req.body.bname,
+        "baddress": req.body.baddress,
+        "bdescription": req.body.bdescription
     });
-    addbusiness_1.default.updateOne({ _id: id }, updateAddBusinessItem, {}, (err) => {
+    addbusiness_1.default.updateOne({ _id: id }, updatedaddbusinessItem, {}, (err) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.redirect('/customer/addbusiness');
+        res.redirect('/owner/addbusiness');
     });
 }
-exports.ProcessEditBusinessPage = ProcessEditBusinessPage;
-function DisplayRateBusinessPage(req, res, next) {
-    res.render('customer/ratebusiness', { title: 'Rate The Business', page: 'ratebusiness', displayName: (0, Util_1.UserDisplayName)(req) });
+exports.ProcessBusinessEditPage = ProcessBusinessEditPage;
+function ProcessBusinessDeletePage(req, res, next) {
+    let id = req.params.id;
+    addbusiness_1.default.remove({ _id: id }, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/owner/addbusiness');
+    });
 }
-exports.DisplayRateBusinessPage = DisplayRateBusinessPage;
+exports.ProcessBusinessDeletePage = ProcessBusinessDeletePage;
 //# sourceMappingURL=addbusiness.js.map

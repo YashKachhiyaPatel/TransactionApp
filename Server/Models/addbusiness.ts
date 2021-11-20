@@ -1,15 +1,19 @@
 import mongoose  from "mongoose";
 const Schema = mongoose.Schema;
 
-const AddBussinessSchema = new Schema
+const BusinessSchema = new Schema
 ({
-    bizname: String,
-    bizaddress: String,
-    bizdescription: String,
+    bname: String,
+    baddress: String,
+    bdescription: String,
+    bowner : {
+        type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
 },
 {
-    collection: "addbusiness"       
+    collection: "addbusiness"
 });
 
-const Model = mongoose.model("addbusiness", AddBussinessSchema);
+const Model = mongoose.model("addbusiness", BusinessSchema);
 export default Model;
