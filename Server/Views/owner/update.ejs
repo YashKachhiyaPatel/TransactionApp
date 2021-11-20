@@ -30,6 +30,18 @@
             name="custamount" value="<%= addcustomer.custamount %>" required>
         </div>
          
+          <div class="input-group mb-3">
+            <select name="businessname" class="form-control" required>
+               <% addbusiness.forEach(b => { %>
+                    <% if(b.id == addcustomer.businessname){ %>
+                        <option selected label="<%= b.bname  %>" name="<%= b.bname  %>"  value="<%= b.id  %>"></option>
+                        <% } else { %>
+                            <option label="<%= b.bname  %>" name="<%= b.bname  %>"  value="<%= b.id  %>"></option>
+                     <%  } %>
+                    <% }) %>
+            </select>
+        </div>
+
             <div class="input-group mb-3">
             <span class="input" id="inputGroup-name">Rating</span>
             <div class="rate">
