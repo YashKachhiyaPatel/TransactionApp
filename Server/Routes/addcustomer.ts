@@ -1,8 +1,9 @@
 import express from 'express';
+import { DisplayaddBusinessListPage, DisplayBusinessAddPage, ProcessBusinessAddPage, DisplayaddbusinessEditPage, ProcessBusinessEditPage, ProcessBusinessDeletePage } from '../Controllers/addbusiness';
 const router = express.Router();
 export default router;
 
-// instantiate an object of type clothing controller
+// instantiate an object of type customer controller
 import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage, DisplayTransactionHistoryPage } from '../Controllers/addcustomer';
 
 // import Util Functions
@@ -31,4 +32,27 @@ router.get('/transactionhistory', AuthGuard, DisplayTransactionHistoryPage);
 
 //dashboard to customer-list page
 router.get('/addcustomer', AuthGuard, DisplayaddcustomerListPage);
+
+
+
+
+//business routes
+//dashboard to list page
+router.get('/addbusiness', AuthGuard, DisplayaddBusinessListPage);
+/* GET - display add page. */
+router.get('/addbusiness/add', AuthGuard, DisplayBusinessAddPage);
+
+/* POST - process add page */
+router.post('/addbusiness/add', AuthGuard, ProcessBusinessAddPage);
+
+
+/* GET - display edit page. */
+router.get('/addbusiness/edit/:id', AuthGuard, DisplayaddbusinessEditPage);
+
+/* POST - process edit page */
+router.post('/addbusiness/edit/:id', AuthGuard, ProcessBusinessEditPage);
+
+/* GET - process delete */
+router.get('/addbusiness/delete/:id', AuthGuard, ProcessBusinessDeletePage);
+
 
