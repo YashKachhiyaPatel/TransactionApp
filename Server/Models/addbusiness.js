@@ -12,7 +12,9 @@ const BusinessSchema = new Schema({
     bowner: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    btotalrating: Number,
+    bnumberofratings: Number
 }, {
     collection: "addbusiness"
 });

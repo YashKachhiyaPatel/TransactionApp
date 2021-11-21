@@ -30,7 +30,9 @@ export function ProcessBusinessAddPage(req: Request, res: Response, next: NextFu
   ({
     "bname": req.body.bname,
       "baddress": req.body.baddress,
-      "bdescription": req.body.bdescription
+      "bdescription": req.body.bdescription,
+      "btotalrating": 0,
+      "bnumberofratings": 0
   });
 
  

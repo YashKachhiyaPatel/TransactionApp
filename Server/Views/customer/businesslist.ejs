@@ -5,15 +5,6 @@
   <div class="row">
     <div class="col">
       <div class="d-flex justify-content-between">
-        <% if(displayName) { %>
-
-        <a
-          href="/customer/addbusiness/add"
-          id="addButton"
-          class="btn btn-primary mb-1"
-          ><i class="fas fa-plus-circle"></i> Add Business</a
-        >
-        <% } %>
         <a href="/customer/" class="btn btn-success mb-1">Dashboard</a>
       </div>
 
@@ -24,6 +15,7 @@
             <th scope="col">Name</th>
             <th scope="col">Address</th>
             <th scope="col">Description</th>
+            <th scope="col">Rating</th>
             <% if(displayName) { %>
             <th></th>
             <% } %>
@@ -32,20 +24,24 @@
         <tbody>
           <!-- Repeatable Row Template -->
 
-          <% for(let count = 0; count < addbusiness.length; count++) { %>
+          <% for(let count = 0; count < businessCollection.length; count++) { %>
 
           <tr>
             <th scope="row"><%= count + 1 %></th>
-            <td><%= addbusiness[count].bizname %></td>
-            <td><%= addbusiness[count].bizaddress %></td>
-            <td><%= addbusiness[count].bizdescription %></td>
-            
+            <td><%= businessCollection[count].bname %></td>
+            <td><%= businessCollection[count].baddress %></td>
+            <td><%= businessCollection[count].bdescription %></td>
+            <% if(businessCollection[count].bnumberofratings > 0) {%> 
+              <td><%= businessCollection[count].btotalrating / businessCollection[count].bnumberofratings %></td>
+            <% } else { %> 
+              <td>No Ratings</td>
+            <% } %> 
             <% if(displayName) { %>
             <td class="text-center">
               <a
-                href="/customer/addbusiness/edit/<%= addbusiness[count]._id %>"
+                href="/customer/ratebusiness/<%= businessCollection[count]._id %>"
                 class="btn btn-primary btn-sm edit"
-                ><i class="fas fa-edit fa-sm"></i> Edit</a
+                ><i class="fas fa-edit fa-sm"></i> Rate</a
               >
             </td>
             <% } %>
