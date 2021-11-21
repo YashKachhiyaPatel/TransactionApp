@@ -6,13 +6,32 @@ import { UserDisplayName } from '../Util';
 
 export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextFunction): void
 {
-    addcustomer.find({}, null, {sort: {name: 1}},function(err,addcustomerCollection){
-        if(err){
-            return console.error(err);
+  // addcustomer.find({}, null, {sort: {name: 1}},function(err,addcustomerCollection){
+  //   if(err){
+  //     return console.error(err);
+  //   }
+    
+  //   //printing list
+  //   res.render('owner/addcustomer',{title: 'Add Contact', page: 'addcustomer', addcustomer: addcustomerCollection, displayName: UserDisplayName(req) })
+  // }); 
+
+  addcustomer.aggregate([     
+      { '$sort': { 'custname': 1} }, 
+      { '$lookup':         
+        {           
+          'from': 'addbusiness',
+          'localField': 'businessname',
+          'foreignField': '_id',
+          'as': 'business'
         }
-        //printing list
-        res.render('owner/addcustomer',{title: 'Add Contact', page: 'addcustomer', addcustomer: addcustomerCollection, displayName: UserDisplayName(req) })
-    }); 
+      }     
+    ]).exec(function(err, result){
+      if(err){
+        return console.error(err);
+      }
+  
+      res.render('owner/addcustomer', {title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: UserDisplayName(req) });
+    });
 }
 
 // Display (E)dit page

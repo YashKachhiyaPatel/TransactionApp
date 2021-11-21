@@ -17,11 +17,20 @@ const addcustomer_1 = __importDefault(require("../Models/addcustomer"));
 const addbusiness_1 = __importDefault(require("../Models/addbusiness"));
 const Util_1 = require("../Util");
 function DisplayaddcustomerListPage(req, res, next) {
-    addcustomer_1.default.find({}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
+    addcustomer_1.default.aggregate([
+        { '$sort': { 'custname': 1 } },
+        { '$lookup': {
+                'from': 'addbusiness',
+                'localField': 'businessname',
+                'foreignField': '_id',
+                'as': 'business'
+            }
+        }
+    ]).exec(function (err, result) {
         if (err) {
             return console.error(err);
         }
-        res.render('owner/addcustomer', { title: 'Add Contact', page: 'addcustomer', addcustomer: addcustomerCollection, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('owner/addcustomer', { title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplayaddcustomerListPage = DisplayaddcustomerListPage;

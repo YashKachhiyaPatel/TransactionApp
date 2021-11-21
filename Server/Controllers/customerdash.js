@@ -33,7 +33,7 @@ exports.DisplayRateBusinessPage = DisplayRateBusinessPage;
 function ProcessRateBusiness(req, res, next) {
     let id = req.params.id;
     let rating = req.body.rating;
-    addbusiness_1.default.updateOne({ _id: id }, { $inc: { btotalrating: +rating, bnumberofratings: +1 } }, (err) => {
+    addbusiness_1.default.updateOne({ _id: id }, { $inc: { btotalrating: +rating, bnumberofratings: +1 } }, {}, (err) => {
         if (err) {
             console.error(err);
             res.end(err);
