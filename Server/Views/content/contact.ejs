@@ -1,28 +1,32 @@
 
-        <h1>Contact Us</h1>
-  
 
-<div class="container p-5">
-    <h1 class="display-4">
+<div class="container col-lg-7 col-md-8 col-12 mt-1">
+    <h2 class="text-center">
         Ask Our Team a Question
-    </h1>
+    </h2>
 
-<div class="container">
-  <form action="/home">
+<div class="container box shadow p-3">
+  
+  <form method="POST" action="contact">
 
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="First...">
+    <div class="form-group mt-2">
+      <input type="text" class="form-control" name="fullName" placeholder="Enter Your Name">
+    </div>
 
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Last...">
-        
-        <label for="lname">Email</label>
-    <input type="text" id="lname" name="lastname" placeholder="Email...">
+    <div class="form-group mt-2">
+      <input type="email" class="form-control" name="email" id="exampleFormControlInput1"
+        placeholder="Enter Email (ex:name@example.com)">
+    </div>
 
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Message..." style="height:200px"></textarea>
+    <div class="form-group mt-2">
+      <input type="Number" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number">
+    </div>
 
-    <input type="submit" value="Submit">
-
+    <div class="form-group mt-2">
+      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Enter Message" name="message" rows="3"></textarea>
+    </div>
+    <br>
+    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
   </form>
+
 </div>

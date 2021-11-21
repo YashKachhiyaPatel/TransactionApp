@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-
+import nodemailer from 'nodemailer';
 import passport from 'passport';
 // create an instance of the User Model
 import User from '../Models/user';
@@ -31,6 +31,46 @@ export function DisplayServicesPage(req: Request, res: Response, next: NextFunct
 export function DisplayContactPage(req: Request, res: Response, next: NextFunction): void
 {
     res.render('index', { title: 'Contact Us', page: 'contact', displayName: UserDisplayName(req)  });
+}
+export async function ProcessContactPage(req: Request, res: Response, next: NextFunction): Promise<void>
+{
+    const output = ` 
+      <p>You have new Request</p>
+      <h3>User Information:</h3>
+      <ul>
+       <li><b>Name:</b> ${req.body.fullName}</li>
+       <li><b>Email:</b> ${req.body.email}</li>
+       <li><b>Phone Number:</b> ${req.body.phone}</li>
+       <li><b>Message:</b> ${req.body.message}</li>
+       </ul>
+    `;
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail', // true for 465, false for other ports
+        auth: {
+          user: 'transactionappg3s4@gmail.com', // generated ethereal user
+          pass: 'transaction@123', // generated ethereal password
+        }
+      });
+    
+      // send mail with defined transport object
+      let mailOptions = {
+        from: 'transactionappg3s4@gmail.com', // sender address
+        to: 'latestdummy@gmail.com', // list of receivers
+        subject: "Message From G3-S4-F21", // Subject line
+        text: "Hello World",
+        html: output
+      };
+
+      transporter.sendMail(mailOptions, function(err, data){
+          if(err){
+              console.log('error');
+          } else {
+              console.log('success....'+data.response);
+          }
+      })
+
+      res.render('index', { title: 'Home', page: 'home', displayName: UserDisplayName(req) });
 }
 
 //Authentication

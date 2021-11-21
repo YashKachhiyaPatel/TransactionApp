@@ -1,5 +1,5 @@
 import express from 'express';
-import { DisplayHomePage, DisplayAboutPage, DisplayProjectsPage, DisplayServicesPage, DisplayContactPage, DisplayLoginPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayRegisterPage} from '../Controllers';
+import { DisplayHomePage, DisplayAboutPage, DisplayProjectsPage, DisplayServicesPage, DisplayContactPage,ProcessContactPage, DisplayLoginPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayRegisterPage} from '../Controllers';
 const router = express.Router();
 export default router;
 
@@ -21,6 +21,9 @@ router.get('/services', DisplayServicesPage);
 
 /* GET contact page. */
 router.get('/contact', DisplayContactPage);
+/* Post contact page. */
+router.post('/contact', ProcessContactPage);
+
 
 /* GET - display Login page - /login */
 router.get('/login', DisplayLoginPage);
@@ -37,5 +40,8 @@ router.post('/register', ProcessRegisterPage);
 
 /* GET - display Register page - /register */
 router.get('/register', DisplayRegisterPage);
+
+
+
 
 //module.exports = router;
