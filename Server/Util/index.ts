@@ -12,6 +12,16 @@ export function UserDisplayName(req: Request): string
     return '';
 }
 
+export function UserRole(req: Request): string
+{
+    if(req.user)
+    {
+        let user = req.user as UserDocument;
+        return user.isowner.toString();
+    }
+    return '';
+}
+
 export function UserIsOwner(req: Request): boolean
 {
     if(req.user)

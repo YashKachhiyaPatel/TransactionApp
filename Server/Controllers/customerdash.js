@@ -7,7 +7,7 @@ exports.ProcessRateBusiness = exports.DisplayRateBusinessPage = exports.DisplayB
 const addbusiness_1 = __importDefault(require("../Models/addbusiness"));
 const Util_1 = require("../Util");
 function DisplayCustomerDashBoardPage(req, res, next) {
-    res.render('customer', { title: 'Customer Dashboard', page: 'index', displayName: (0, Util_1.UserDisplayName)(req) });
+    res.render('customer', { title: 'Customer Dashboard', page: 'index', displayName: Util_1.UserDisplayName(req) });
 }
 exports.DisplayCustomerDashBoardPage = DisplayCustomerDashBoardPage;
 function DisplayBusinessListPage(req, res, next) {
@@ -15,7 +15,7 @@ function DisplayBusinessListPage(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        res.render('customer/businesslist', { title: 'List of Businesses', page: 'businesslist', businessCollection: businessList, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('customer/businesslist', { title: 'List of Businesses', page: 'businesslist', businessCollection: businessList, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayBusinessListPage = DisplayBusinessListPage;
@@ -26,7 +26,7 @@ function DisplayRateBusinessPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('customer/ratebusiness', { title: 'Rate The Business', page: 'ratebusiness', businessCollection: businessToRate, displayName: (0, Util_1.UserDisplayName)(req) });
+        res.render('customer/ratebusiness', { title: 'Rate The Business', page: 'ratebusiness', businessCollection: businessToRate, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayRateBusinessPage = DisplayRateBusinessPage;

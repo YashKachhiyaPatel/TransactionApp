@@ -2,7 +2,7 @@ import expess,{ Request, Response, NextFunction } from 'express';
 import addcustomer from '../Models/addcustomer';
 import addbusiness from '../Models/addbusiness';
 // import Util Functions
-import { UserDisplayName } from '../Util';
+import { UserDisplayName, UserRole } from '../Util';
 
 export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextFunction): void
 {
@@ -30,7 +30,7 @@ export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextF
         return console.error(err);
       }
   
-      res.render('owner/addcustomer', {title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: UserDisplayName(req) });
+      res.render('owner/addcustomer', {title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: UserDisplayName(req), isowner: UserRole(req) });
     });
 }
 
@@ -156,5 +156,5 @@ export function DisplayTransactionHistoryPage(req: Request, res: Response, next:
 //dashboard to customer list
 export function ProcessAddCustomer(req: Request, res: Response, next: NextFunction): void
  {
-  res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: UserDisplayName(req)  });
+  res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: UserDisplayName(req), isowner: UserRole(req)  });
 }
