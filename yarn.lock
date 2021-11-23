@@ -156,6 +156,13 @@
   "resolved" "https://registry.npmjs.org/@types/node/-/node-15.14.9.tgz"
   "version" "15.14.9"
 
+"@types/nodemailer@^6.4.4":
+  "integrity" "sha512-Ksw4t7iliXeYGvIQcSIgWQ5BLuC/mljIEbjf615svhZL10PE9t+ei8O9gDaD3FPCasUJn9KTLwz2JFJyiiyuqw=="
+  "resolved" "https://registry.npmjs.org/@types/nodemailer/-/nodemailer-6.4.4.tgz"
+  "version" "6.4.4"
+  dependencies:
+    "@types/node" "*"
+
 "@types/passport-local-mongoose@^4.0.14":
   "integrity" "sha512-wg1ri5Tyl8c/FLzm57efHlHJVwr7RcbsqORcQBOI7XWSw6PEtt75qX0OQept3/4k0vV/GYTdeTWnTzSFyZtwEA=="
   "resolved" "https://registry.npmjs.org/@types/passport-local-mongoose/-/passport-local-mongoose-4.0.15.tgz"
@@ -750,6 +757,11 @@
   "integrity" "sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw=="
   "resolved" "https://registry.npmjs.org/negotiator/-/negotiator-0.6.2.tgz"
   "version" "0.6.2"
+
+"nodemailer@^6.7.1":
+  "integrity" "sha512-E1C8G3rnXrGjznwGP1k+OrW5k4rl0XtqTEB19f7vtJAMYwfxZVSsAu2iY5xJkrZsbVYr6PwwAwRmFlakPoFC0A=="
+  "resolved" "https://registry.npmjs.org/nodemailer/-/nodemailer-6.7.1.tgz"
+  "version" "6.7.1"
 
 "object-assign@^4":
   "integrity" "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
