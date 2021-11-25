@@ -2,11 +2,11 @@
 
 
 body {
-  background: #6DA6E0;
+  background: #0f242b;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #EEF15C, #6DA6E0);
+  background: -webkit-linear-gradient(to right, #4f2b3f, #0f242b);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #EEF15C, #6DA6E0);
+  background: linear-gradient(to right, #4f2b3f, #0f242b);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
