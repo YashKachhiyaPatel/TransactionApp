@@ -58,7 +58,7 @@ function ProcessContactPage(req, res, next) {
         });
         let mailOptions = {
             from: 'transactionappg3s4@gmail.com',
-            to: 'latestdummy@gmail.com',
+            to: 'transactionappg3s4@gmail.com',
             subject: "Message From G3-S4-F21",
             text: "Hello World",
             html: output
