@@ -56,7 +56,7 @@ export async function ProcessContactPage(req: Request, res: Response, next: Next
       // send mail with defined transport object
       let mailOptions = {
         from: 'transactionappg3s4@gmail.com', // sender address
-        to: 'latestdummy@gmail.com', // list of receivers
+        to: 'transactionappg3s4@gmail.com', // list of receivers
         subject: "Message From G3-S4-F21", // Subject line
         text: "Hello World",
         html: output

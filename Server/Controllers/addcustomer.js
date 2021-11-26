@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProcessAddCustomer = exports.DisplayTransactionHistoryPage = exports.ProcessCustomerDeletePage = exports.ProcessCustomerAddPage = exports.DisplayCustomerAddPage = exports.ProcessCustomerEditPage = exports.DisplayaddcustomerEditPage = exports.DisplayaddcustomerListPage = void 0;
 const addcustomer_1 = __importDefault(require("../Models/addcustomer"));
@@ -34,7 +33,6 @@ function DisplayaddcustomerListPage(req, res, next) {
         res.render('owner/addcustomer', { title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: Util_1.UserDisplayName(req), isowner: Util_1.UserRole(req) });
     });
 }
-
 exports.DisplayaddcustomerListPage = DisplayaddcustomerListPage;
 function DisplayaddcustomerEditPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -50,7 +48,6 @@ function DisplayaddcustomerEditPage(req, res, next) {
         }));
     });
 }
-
 exports.DisplayaddcustomerEditPage = DisplayaddcustomerEditPage;
 function ProcessCustomerEditPage(req, res, next) {
     let id = req.params.id;
@@ -70,7 +67,6 @@ function ProcessCustomerEditPage(req, res, next) {
         res.redirect('/owner/addcustomer');
     });
 }
-
 exports.ProcessCustomerEditPage = ProcessCustomerEditPage;
 function DisplayCustomerAddPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -89,7 +85,6 @@ function DisplayCustomerAddPage(req, res, next) {
         }
     });
 }
-
 exports.DisplayCustomerAddPage = DisplayCustomerAddPage;
 function ProcessCustomerAddPage(req, res, next) {
     let newCustomer = new addcustomer_1.default({
@@ -107,7 +102,6 @@ function ProcessCustomerAddPage(req, res, next) {
         res.redirect('/owner/addcustomer');
     });
 }
-
 exports.ProcessCustomerAddPage = ProcessCustomerAddPage;
 function ProcessCustomerDeletePage(req, res, next) {
     let id = req.params.id;
@@ -119,7 +113,6 @@ function ProcessCustomerDeletePage(req, res, next) {
         res.redirect('/owner/addcustomer');
     });
 }
-
 exports.ProcessCustomerDeletePage = ProcessCustomerDeletePage;
 function DisplayTransactionHistoryPage(req, res, next) {
     addcustomer_1.default.find({}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
@@ -129,7 +122,6 @@ function DisplayTransactionHistoryPage(req, res, next) {
         res.render('owner/transactionhistory', { title: 'Transaction History', page: 'transactionhistory', addcustomer: addcustomerCollection, displayName: Util_1.UserDisplayName(req) });
     });
 }
-
 exports.DisplayTransactionHistoryPage = DisplayTransactionHistoryPage;
 function ProcessAddCustomer(req, res, next) {
     res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: Util_1.UserDisplayName(req), isowner: Util_1.UserRole(req) });
