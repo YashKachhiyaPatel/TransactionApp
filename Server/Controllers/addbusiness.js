@@ -11,12 +11,12 @@ function DisplayaddBusinessListPage(req, res, next) {
         if (err) {
             return console.error(err);
         }
-        res.render('owner/addbusiness', { title: 'Add Business', page: 'addbusiness', addbusiness: businessCollection, displayName: Util_1.UserDisplayName(req) });
+        res.render('owner/addbusiness', { title: 'Add Business', page: 'addbusiness', addbusiness: businessCollection, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplayaddBusinessListPage = DisplayaddBusinessListPage;
 function DisplayBusinessAddPage(req, res, next) {
-    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', addbusiness: '', displayName: Util_1.UserDisplayName(req) });
+    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', addbusiness: '', displayName: (0, Util_1.UserDisplayName)(req) });
 }
 exports.DisplayBusinessAddPage = DisplayBusinessAddPage;
 function ProcessBusinessAddPage(req, res, next) {
@@ -43,7 +43,7 @@ function DisplayaddbusinessEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: Util_1.UserDisplayName(req) });
+        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: (0, Util_1.UserDisplayName)(req) });
     });
 }
 exports.DisplayaddbusinessEditPage = DisplayaddbusinessEditPage;
