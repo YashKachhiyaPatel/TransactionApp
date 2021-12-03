@@ -29,7 +29,17 @@
             <input type="number" class="form-control" placeholder="Amount" aria-label="custamount" aria-describedby="custamount"
             name="custamount" value="<%= addcustomer.custamount %>" required>
         </div>
-       
+
+        <div class="input-group mb-3">
+           <form action="/action_page.php">
+            <input type="file" id="myFile" name="filename">
+             <input type="submit">
+        </form>
+            <span class="input-group-text" id="inputGroup-name">Image of Payment</span>
+            <input type="number" class="form-control" placeholder="Image" aria-label="custimage" aria-describedby="custimage"
+            name="custimage" value="<%= addcustomer.custimage %>" required>
+        </div>
+         
           <div class="input-group mb-3">
             <select name="businessname" class="form-control" required>
                <% addbusiness.forEach(b => { %>
@@ -59,14 +69,6 @@
     <label for="star1" title="text">1 star</label>
   </div>
         </div>
-
-<div class="input-group mb-3">
-           <form action="/action_page.php">
-            <input type="file" id="inputGroup-name"  placeholder="Image" aria-label="custimage" aria-describedby="custimage" 
-            name="custimage" value="<%= addcustomer.custimage %>">
-            </form>
-        </div>  
-
 
         <div class="mb-3">
 
