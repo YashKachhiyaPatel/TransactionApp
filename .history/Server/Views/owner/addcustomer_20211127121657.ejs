@@ -27,7 +27,6 @@
                 <th scope="col">Amount</th>
                 <th scope="col">Business</th>
                 <th scope="col">Rating</th>
-                <th scope="col">Image</th>
                 
                 
                  <% if(displayName) { %>
@@ -50,8 +49,6 @@
                     <td><%= addcustomer[count].custamount %></td>
                     <td>Not Working</td>
                     <td><%= addcustomer[count].custrating %></td>
-                    <td><%= addcustomer[count].custimage %></td>
-
 
                      <% if(displayName) { %>
                       <td class="text-center"><a href="/owner/addcustomer/edit/<%= addcustomer[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</a></td>
