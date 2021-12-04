@@ -1,0 +1,12 @@
+<h4>About</h4>
+
+
+<div class="grid-container">
+  <div class="item1">Rapiejko, Clayton <br><small>Scrumaster</small></div>
+  <div class="item2">Nguyen, Thi Minh Hanh<br><small>Lead Designer</small></div>
+  <div class="item3">Ong, Kelvin<br><small>Web Designer</small></div>  
+  <div class="item4">Sheikh, Abdullah<br><small>UI Designer</small></div>
+  <div class="item5">Sinha, Aashi<br><small>Security and UI Manager</small></div>
+  <div class="item6">Udavant, Kautuk<br><small>Backend Developer</small></div>
+  <div class="item7">Kachhiyapatel, Yash Sanjaykumar<br><small>Database Designer</small></div>
+</div>
