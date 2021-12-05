@@ -28,7 +28,7 @@ function DisplayaddcustomerListPage(req, res, next) {
         }
     ]).exec(function (err, result) {
         if (err) {
-            return console.error(err);
+            return res.redirect('/error');
         }
         res.render('owner/addcustomer', { title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: Util_1.UserDisplayName(req), isowner: Util_1.UserRole(req) });
     });
@@ -41,7 +41,7 @@ function DisplayaddcustomerEditPage(req, res, next) {
         addcustomer_1.default.findById(id, {}, {}, (err, addcustomerItemToEdit) => __awaiter(this, void 0, void 0, function* () {
             if (err) {
                 console.error(err);
-                res.end(err);
+                return res.redirect('/error');
             }
             console.log(addcustomer_1.default);
             res.render('owner/update', { title: 'Update', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
@@ -62,7 +62,7 @@ function ProcessCustomerEditPage(req, res, next) {
     addcustomer_1.default.updateOne({ _id: id }, updatedaddcustomerItem, {}, (err) => {
         if (err) {
             console.error(err);
-            res.end(err);
+            return res.redirect('/error');
         }
         res.redirect('/owner/addcustomer');
     });
@@ -108,7 +108,7 @@ function ProcessCustomerDeletePage(req, res, next) {
     addcustomer_1.default.remove({ _id: id }, (err) => {
         if (err) {
             console.error(err);
-            res.end(err);
+            return res.redirect('/error');
         }
         res.redirect('/owner/addcustomer');
     });
@@ -117,7 +117,7 @@ exports.ProcessCustomerDeletePage = ProcessCustomerDeletePage;
 function DisplayTransactionHistoryPage(req, res, next) {
     addcustomer_1.default.find({}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
         if (err) {
-            return console.error(err);
+            return res.redirect('/error');
         }
         res.render('owner/transactionhistory', { title: 'Transaction History', page: 'transactionhistory', addcustomer: addcustomerCollection, displayName: Util_1.UserDisplayName(req) });
     });
