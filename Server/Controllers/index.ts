@@ -174,3 +174,20 @@ export function ProcessLogoutPage(req: Request, res: Response, next: NextFunctio
    res.redirect('/home');
 }
 
+
+export function DisplayChangepasswordPage(req: Request, res: Response, next: NextFunction): void
+{
+    if(!req.user)
+    {
+        return res.render('index', { title: 'Change Password', page: 'changepassword', messages: req.flash('Changepassword'), displayName: UserDisplayName(req)   });
+    }
+
+    return res.redirect('/changepassword');
+}
+
+export function ProcessChangepasswordPage(req: Request, res: Response, next: NextFunction): void
+ {
+   
+ }
+
+

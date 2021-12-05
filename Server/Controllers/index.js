@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.ProcessContactPage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
+exports.ProcessChangepasswordPage = exports.DisplayChangepasswordPage = exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.ProcessContactPage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const passport_1 = __importDefault(require("passport"));
 const user_1 = __importDefault(require("../Models/user"));
@@ -141,4 +141,14 @@ function ProcessLogoutPage(req, res, next) {
     res.redirect('/home');
 }
 exports.ProcessLogoutPage = ProcessLogoutPage;
+function DisplayChangepasswordPage(req, res, next) {
+    if (!req.user) {
+        return res.render('index', { title: 'Change Password', page: 'changepassword', messages: req.flash('Changepassword'), displayName: Util_1.UserDisplayName(req) });
+    }
+    return res.redirect('/changepassword');
+}
+exports.DisplayChangepasswordPage = DisplayChangepasswordPage;
+function ProcessChangepasswordPage(req, res, next) {
+}
+exports.ProcessChangepasswordPage = ProcessChangepasswordPage;
 //# sourceMappingURL=index.js.map
