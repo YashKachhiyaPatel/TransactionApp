@@ -21,4 +21,5 @@ router.post('/register', Controllers_1.ProcessRegisterPage);
 router.get('/register', Controllers_1.DisplayRegisterPage);
 router.get('/changepassword', Controllers_1.DisplayChangepasswordPage);
 router.post('/changepassword', Controllers_1.ProcessChangepasswordPage);
+router.get('/error', Controllers_1.DisplayErrorPage);
 //# sourceMappingURL=index.js.map

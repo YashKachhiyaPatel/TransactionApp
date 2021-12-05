@@ -27,7 +27,7 @@ export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextF
       }     
     ]).exec(function(err, result){
       if(err){
-        return console.error(err);
+        return res.redirect('/error');
       }
   
       res.render('owner/addcustomer', {title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: UserDisplayName(req), isowner: UserRole(req) });
@@ -46,7 +46,7 @@ export async function DisplayaddcustomerEditPage(req: Request, res: Response, ne
         if(err)
         {
             console.error(err);
-            res.end(err);
+            return res.redirect('/error');
         }
        
         console.log(addcustomer);
@@ -76,7 +76,7 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
       if(err)
       {
         console.error(err);
-        res.end(err);
+        return res.redirect('/error');
       }
   
       res.redirect('/owner/addcustomer');
@@ -136,7 +136,7 @@ export function ProcessCustomerDeletePage(req: Request, res: Response, next: Nex
     if(err)
     {
       console.error(err);
-      res.end(err);
+      return res.redirect('/error');
     }
 
     res.redirect('/owner/addcustomer');
@@ -147,7 +147,7 @@ export function DisplayTransactionHistoryPage(req: Request, res: Response, next:
 {
   addcustomer.find({}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
       if (err) {
-          return console.error(err);
+        return res.redirect('/error');
       }
       res.render('owner/transactionhistory', { title: 'Transaction History', page: 'transactionhistory', addcustomer: addcustomerCollection, displayName: UserDisplayName(req) });
   });

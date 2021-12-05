@@ -1,5 +1,5 @@
 import express from 'express';
-import { DisplayHomePage, DisplayAboutPage, DisplayProjectsPage, DisplayServicesPage, DisplayContactPage,ProcessContactPage, DisplayLoginPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayRegisterPage, DisplayChangepasswordPage, ProcessChangepasswordPage} from '../Controllers';
+import { DisplayHomePage, DisplayAboutPage, DisplayProjectsPage, DisplayServicesPage, DisplayContactPage,ProcessContactPage, DisplayLoginPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayRegisterPage, DisplayChangepasswordPage, ProcessChangepasswordPage, DisplayErrorPage} from '../Controllers';
 const router = express.Router();
 export default router;
 
@@ -47,4 +47,7 @@ router.get('/register', DisplayRegisterPage);
 router.get('/changepassword', DisplayChangepasswordPage);
 /* POST - process Register page when user presses Register button */
 router.post('/changepassword', ProcessChangepasswordPage);
+
+/* GET - display error page*/
+router.get('/error', DisplayErrorPage);
 //module.exports = router;
