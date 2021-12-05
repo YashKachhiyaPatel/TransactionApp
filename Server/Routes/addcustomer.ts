@@ -4,7 +4,7 @@ const router = express.Router();
 export default router;
 
 // instantiate an object of type customer controller
-import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage, DisplayTransactionHistoryPage } from '../Controllers/addcustomer';
+import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage, DisplayTransactionHistoryPage, DisplaySendReminderPage, ProcessSendReminderPage } from '../Controllers/addcustomer';
 
 // import Util Functions
 import { AuthGuard } from '../Util/index';
@@ -54,5 +54,13 @@ router.post('/addbusiness/edit/:id', AuthGuard, ProcessBusinessEditPage);
 
 /* GET - process delete */
 router.get('/addbusiness/delete/:id', AuthGuard, ProcessBusinessDeletePage);
+
+
+
+/* GET - display /reminder/edit/:id page. */
+router.get('/reminder/edit/:id', AuthGuard, DisplaySendReminderPage);
+
+/* POST - process /reminder/edit/:id page */
+router.post('/reminder/edit/:id', AuthGuard, ProcessSendReminderPage);
 
 

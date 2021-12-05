@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessAddCustomer = exports.DisplayTransactionHistoryPage = exports.ProcessCustomerDeletePage = exports.ProcessCustomerAddPage = exports.DisplayCustomerAddPage = exports.ProcessCustomerEditPage = exports.DisplayaddcustomerEditPage = exports.DisplayaddcustomerListPage = void 0;
+exports.ProcessSendReminderPage = exports.DisplaySendReminderPage = exports.ProcessAddCustomer = exports.DisplayTransactionHistoryPage = exports.ProcessCustomerDeletePage = exports.ProcessCustomerAddPage = exports.DisplayCustomerAddPage = exports.ProcessCustomerEditPage = exports.DisplayaddcustomerEditPage = exports.DisplayaddcustomerListPage = void 0;
 const addcustomer_1 = __importDefault(require("../Models/addcustomer"));
 const addbusiness_1 = __importDefault(require("../Models/addbusiness"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
 const Util_1 = require("../Util");
 function DisplayaddcustomerListPage(req, res, next) {
     addcustomer_1.default.aggregate([
@@ -127,4 +128,56 @@ function ProcessAddCustomer(req, res, next) {
     res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: Util_1.UserDisplayName(req), isowner: Util_1.UserRole(req) });
 }
 exports.ProcessAddCustomer = ProcessAddCustomer;
+function DisplaySendReminderPage(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let id = req.params.id;
+        addcustomer_1.default.findById(id, {}, {}, (err, addcustomerItemToEdit) => __awaiter(this, void 0, void 0, function* () {
+            if (err) {
+                console.error(err);
+                res.end(err);
+            }
+            console.log(addcustomer_1.default);
+            res.render('owner/reminder', { title: 'Send Reminder', page: 'reminder', addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
+        }));
+    });
+}
+exports.DisplaySendReminderPage = DisplaySendReminderPage;
+function ProcessSendReminderPage(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const output = ` 
+      
+      <h3>Your Payment Details:</h3>
+      <ul>
+      <li><b>Name:</b> ${req.body.custname}</li>
+      <li><b>Email:</b> ${req.body.custemail}</li>
+      <li><b>Amount:$</b> ${req.body.custamount}</li>
+      </ul>
+    `;
+        let transporter = nodemailer_1.default.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'transactionappg3s4@gmail.com',
+                pass: 'transaction@123',
+            }
+        });
+        let mailOptions = {
+            from: 'transactionappg3s4@gmail.com',
+            to: req.body.custemail,
+            subject: "URGENT (Pay Your Bill)",
+            text: "Hello World",
+            html: output
+        };
+        transporter.sendMail(mailOptions, function (err, data) {
+            if (err) {
+                console.log('error');
+            }
+            else {
+                console.log('success....' + data.response);
+                alert('email sent..');
+            }
+        });
+        res.redirect('/owner/addcustomer');
+    });
+}
+exports.ProcessSendReminderPage = ProcessSendReminderPage;
 //# sourceMappingURL=addcustomer.js.map
