@@ -105,7 +105,7 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
     if(!user)
     {
         req.flash('loginMessage', 'UnAuthenticated Information');
-        return res.redirect('/login');
+        return res.redirect('/error');
     }
 
     req.login(user, (err) => 
@@ -173,4 +173,30 @@ export function ProcessLogoutPage(req: Request, res: Response, next: NextFunctio
 
    res.redirect('/home');
 }
+
+export function DisplayErrorPage(req: Request, res: Response, next: NextFunction): void
+{
+    if(!req.user)
+    {
+        return res.render('index', { title: 'Error', page: 'error', messages: req.flash('error'), displayName: UserDisplayName(req)   });
+    }
+
+    return res.redirect('/error');
+}
+
+export function DisplayChangepasswordPage(req: Request, res: Response, next: NextFunction): void
+{
+    if(!req.user)
+    {
+        return res.render('index', { title: 'Change Password', page: 'changepassword', messages: req.flash('Changepassword'), displayName: UserDisplayName(req)   });
+    }
+
+    return res.redirect('/changepassword');
+}
+
+export function ProcessChangepasswordPage(req: Request, res: Response, next: NextFunction): void
+ {
+   
+ }
+
 

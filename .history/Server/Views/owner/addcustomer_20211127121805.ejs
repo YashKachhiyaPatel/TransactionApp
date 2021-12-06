@@ -26,13 +26,12 @@
                 <th scope="col">Email</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Business</th>
-                <th scope="col">Image</th>
+                <th scope="col">Rating</th>
                 
                 
                  <% if(displayName) { %>
                   <th></th>
                   <th></th>
-                  <th scope="col">Reminder</th>
                 <% } %>
               </tr>
             </thead>
@@ -49,15 +48,14 @@
                     <td><%= addcustomer[count].custemail %></td>
                     <td><%= addcustomer[count].custamount %></td>
                     <td>Not Working</td>
-                    <td><%= addcustomer[count].custimage %></td>
+                    <td><%= addcustomer[count].custrating %></td>
 
                      <% if(displayName) { %>
                       <td class="text-center"><a href="/owner/addcustomer/edit/<%= addcustomer[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</a></td>
-                      <td class="text-center"><a href="/owner/addcustomer/delete/<%= addcustomer[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
-                      <td class="text-center"><a href="/owner/reminder/edit/<%= addcustomer[count]._id %>" class="btn btn-outline-info btn-sm edit"><i class="fas fa-edit fa-sm"></i> Reminder</a></td>
-                    <% } %>
-                    
+                                            <td class="text-center"><a href="/owner/addcustomer/edit/<%= addcustomer[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</a></td>
 
+                      <td class="text-center"><a href="/owner/addcustomer/delete/<%= addcustomer[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
+                    <% } %>
                 </tr>
 
               <% } %>

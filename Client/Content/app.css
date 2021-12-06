@@ -382,3 +382,14 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+.account-name{
+  color: white;
+  text-decoration: none;
+}
+
+.margin-right{
+  margin-right: 7px;
+}
+.bigger-text{
+ font-size: 20px;
+}

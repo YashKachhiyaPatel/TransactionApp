@@ -1,6 +1,8 @@
 import expess,{ Request, Response, NextFunction } from 'express';
 import addcustomer from '../Models/addcustomer';
 import addbusiness from '../Models/addbusiness';
+import bodyParser from 'body-parser';
+import nodemailer from 'nodemailer';
 // import Util Functions
 import { UserDisplayName, UserRole } from '../Util';
 
@@ -27,7 +29,7 @@ export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextF
       }     
     ]).exec(function(err, result){
       if(err){
-        return console.error(err);
+        return res.redirect('/error');
       }
   
       res.render('owner/addcustomer', {title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: UserDisplayName(req), isowner: UserRole(req) });
@@ -46,7 +48,7 @@ export async function DisplayaddcustomerEditPage(req: Request, res: Response, ne
         if(err)
         {
             console.error(err);
-            res.end(err);
+            return res.redirect('/error');
         }
        
         console.log(addcustomer);
@@ -76,7 +78,7 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
       if(err)
       {
         console.error(err);
-        res.end(err);
+        return res.redirect('/error');
       }
   
       res.redirect('/owner/addcustomer');
@@ -136,7 +138,7 @@ export function ProcessCustomerDeletePage(req: Request, res: Response, next: Nex
     if(err)
     {
       console.error(err);
-      res.end(err);
+      return res.redirect('/error');
     }
 
     res.redirect('/owner/addcustomer');
@@ -147,7 +149,7 @@ export function DisplayTransactionHistoryPage(req: Request, res: Response, next:
 {
   addcustomer.find({}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
       if (err) {
-          return console.error(err);
+        return res.redirect('/error');
       }
       res.render('owner/transactionhistory', { title: 'Transaction History', page: 'transactionhistory', addcustomer: addcustomerCollection, displayName: UserDisplayName(req) });
   });
@@ -158,3 +160,66 @@ export function ProcessAddCustomer(req: Request, res: Response, next: NextFuncti
  {
   res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: UserDisplayName(req), isowner: UserRole(req)  });
 }
+
+
+export async function DisplaySendReminderPage(req: Request, res:Response,next:NextFunction): Promise<void>
+{
+  let id = req.params.id;
+
+  addcustomer.findById(id, {}, {}, async (err, addcustomerItemToEdit) => 
+  {
+     
+      if(err)
+      {
+          console.error(err);
+          res.end(err);
+      }
+     
+      console.log(addcustomer);
+      // show the edit view
+      res.render('owner/reminder', { title: 'Send Reminder', page: 'reminder', addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
+  });
+}
+
+export async function ProcessSendReminderPage(req: Request, res:Response,next:NextFunction): Promise<void>
+{
+
+  const output = ` 
+      
+      <h3>Your Payment Details:</h3>
+      <ul>
+      <li><b>Name:</b> ${req.body.custname}</li>
+      <li><b>Email:</b> ${req.body.custemail}</li>
+      <li><b>Amount:$</b> ${req.body.custamount}</li>
+      </ul>
+    `;
+    let transporter = nodemailer.createTransport({
+      service: 'gmail', // true for 465, false for other ports
+      auth: {
+        user: 'transactionappg3s4@gmail.com', // generated ethereal user
+        pass: 'transaction@123', // generated ethereal password
+      }
+    });
+
+    // send mail with defined transport object
+    let mailOptions = {
+      from: 'transactionappg3s4@gmail.com', // sender address
+      to: req.body.custemail, // list of receivers
+      subject: "URGENT (Pay Your Bill)", // Subject line
+      text: "Hello World",
+      html: output
+    };
+
+    transporter.sendMail(mailOptions, function(err, data){
+        if(err){
+            console.log('error');
+        } else {
+            console.log('success....'+data.response);
+            alert('email sent..');
+        }
+    })
+
+    res.redirect('/owner/addcustomer');
+
+}
+
