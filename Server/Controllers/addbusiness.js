@@ -43,7 +43,7 @@ function DisplayaddbusinessEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: Util_1.UserDisplayName(req) });
+        res.render('owner/updatebusiness', { title: 'Edit', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayaddbusinessEditPage = DisplayaddbusinessEditPage;

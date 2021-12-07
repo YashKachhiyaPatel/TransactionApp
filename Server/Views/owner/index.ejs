@@ -6,10 +6,16 @@
         
          <% if(isowner == "owner"){ %>
 
-         <h3>Add Your Business to Manage Your Transactions</h3>
-        <a href="/owner/addcustomer" class="btn btn-primary mt-4"><i class="fas fa-plus-circle p-1"></i>Add Customer</a><br>
-         <a href="/owner/addbusiness" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add business</a>
-         <a href="/owner/transactionhistory" class="btn btn-primary mt-3">View Summary</a>
+            <h3>Add Your Business to Manage Your Transactions</h3>
+
+            <% if(addbusiness.length > 0){ %>
+            <a href="/owner/addcustomer" class="btn btn-primary mt-4"><i class="fas fa-plus-circle p-1"></i>Add Customer</a><br>
+             <a href="/owner/addbusiness" class="btn btn-primary mt-3"> Business Details</a><br>
+             <a href="/owner/transactionhistory" class="btn btn-primary mt-3">View Summary</a>
+            <% } else { %>
+            <a href="/owner/addbusiness" class="btn btn-primary mt-3"><i class="fas fa-plus-circle"></i> Add business</a><br>
+            <% }  %>
+            
            
          <% } else { %>
            <h3>Track your Expense</h3>
