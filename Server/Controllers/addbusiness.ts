@@ -61,7 +61,7 @@ export function DisplayaddbusinessEditPage(req: Request, res: Response, next: Ne
         }
 
         // show the edit view
-        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: UserDisplayName(req) });
+        res.render('owner/updatebusiness', { title: 'Edit', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: UserDisplayName(req) });
     });
 }
 

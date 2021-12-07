@@ -45,7 +45,7 @@ function DisplayaddcustomerEditPage(req, res, next) {
                 return res.redirect('/error');
             }
             console.log(addcustomer_1.default);
-            res.render('owner/update', { title: 'Update', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
+            res.render('owner/update', { title: 'Edit', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
         }));
     });
 }
@@ -125,7 +125,10 @@ function DisplayTransactionHistoryPage(req, res, next) {
 }
 exports.DisplayTransactionHistoryPage = DisplayTransactionHistoryPage;
 function ProcessAddCustomer(req, res, next) {
-    res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: Util_1.UserDisplayName(req), isowner: Util_1.UserRole(req) });
+    return __awaiter(this, void 0, void 0, function* () {
+        const businessCollection = yield addbusiness_1.default.find({});
+        res.render('owner', { title: 'DashBoard', page: 'index', displayName: Util_1.UserDisplayName(req), addbusiness: businessCollection, isowner: Util_1.UserRole(req) });
+    });
 }
 exports.ProcessAddCustomer = ProcessAddCustomer;
 function DisplaySendReminderPage(req, res, next) {

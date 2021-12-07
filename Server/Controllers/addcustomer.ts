@@ -53,7 +53,7 @@ export async function DisplayaddcustomerEditPage(req: Request, res: Response, ne
        
         console.log(addcustomer);
         // show the edit view
-        res.render('owner/update', { title: 'Update', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
+        res.render('owner/update', { title: 'Edit', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
     });
 }
 
@@ -155,10 +155,12 @@ export function DisplayTransactionHistoryPage(req: Request, res: Response, next:
   });
 }
 
-//dashboard to customer list
-export function ProcessAddCustomer(req: Request, res: Response, next: NextFunction): void
+//dashboard 
+export async function ProcessAddCustomer(req: Request, res: Response, next: NextFunction): Promise<void>
  {
-  res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: UserDisplayName(req), isowner: UserRole(req)  });
+  const businessCollection = await addbusiness.find({})
+  
+  res.render('owner', { title: 'DashBoard', page: 'index', displayName: UserDisplayName(req),addbusiness: businessCollection, isowner: UserRole(req)  });
 }
 
 
